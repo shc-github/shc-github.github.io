@@ -25,7 +25,7 @@ body {
     line-height: 1.6;
 }
 
-/* 粒子背景画布 */
+/* 粒子背景画布 - 改用纯CSS */
 #particles {
     position: fixed;
     top: 0;
@@ -33,7 +33,34 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+    background:
+        radial-gradient(circle at 20% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+        linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+}
+
+/* 科技感扫描线 - 禁用动画 */
+.scan-line {
+    display: none;
+}
+
+/* 网格背景 - 禁用动画 */
+.grid-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-image:
+        linear-gradient(rgba(0, 243, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* 数字雨背景 - 完全禁用 */
+.matrix-bg {
+    display: none;
 }
 
 /* 主容器 */
@@ -84,8 +111,19 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-shadow: 0 0 30px var(--glow-color);
     letter-spacing: 2px;
+    position: relative;
+}
+
+.logo-text::after {
+    content: 'SHC';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-color);
+    filter: blur(10px);
+    opacity: 0.5;
+    z-index: -1;
 }
 
 .logo-pulse {
@@ -145,14 +183,14 @@ body {
     text-shadow: 0 0 10px var(--glow-color);
 }
 
-/* 主页英雄区域 */
+/* 主页英雄区域 - 缩小以适应一屏 */
 .hero {
-    min-height: 100vh;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8rem 5% 4rem;
-    gap: 4rem;
+    padding: 6rem 5% 2rem;
+    gap: 3rem;
 }
 
 .hero-content {
@@ -166,6 +204,10 @@ body {
     margin-bottom: 1rem;
     position: relative;
     animation: glitchText 3s infinite;
+    text-shadow:
+        0 0 10px var(--primary-color),
+        0 0 20px var(--primary-color),
+        0 0 30px var(--primary-color);
 }
 
 .glitch::before,
@@ -261,9 +303,10 @@ body {
     border-radius: 50px;
     cursor: pointer;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-weight: 600;
     letter-spacing: 1px;
+    will-change: transform;
 }
 
 .btn span {
@@ -305,7 +348,7 @@ body {
     box-shadow: 0 10px 40px var(--glow-color);
 }
 
-/* 3D 立方体 */
+/* 3D 立方体 - 性能优化版 */
 .cube-container {
     flex: 1;
     display: flex;
@@ -319,7 +362,8 @@ body {
     height: 200px;
     position: relative;
     transform-style: preserve-3d;
-    animation: rotateCube 20s infinite linear;
+    animation: rotateCube 30s infinite linear;
+    will-change: transform;
 }
 
 @keyframes rotateCube {
@@ -407,8 +451,9 @@ body {
     border: 1px solid rgba(0, 243, 255, 0.3);
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     overflow: hidden;
+    will-change: transform;
 }
 
 .card::before {
@@ -436,7 +481,7 @@ body {
 .card-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
-    filter: drop-shadow(0 0 10px var(--primary-color));
+    filter: drop-shadow(0 0 5px var(--primary-color));
 }
 
 .card h3 {
@@ -479,7 +524,8 @@ body {
     border: 1px solid rgba(0, 243, 255, 0.2);
     border-radius: 15px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    will-change: transform;
 }
 
 .project-card:hover {
@@ -561,16 +607,17 @@ body {
 
 /* 联系区域 */
 .contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    display: flex;
+    justify-content: center;
     margin-top: 3rem;
 }
 
 .contact-info {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    max-width: 1000px;
+    width: 100%;
 }
 
 .contact-item {
@@ -664,17 +711,17 @@ body {
     text-shadow: 0 0 10px var(--glow-color);
 }
 
-/* 鼠标跟随光效 */
+/* 鼠标跟随光效 - 性能优化版 */
 .cursor-glow {
     position: fixed;
     width: 300px;
     height: 300px;
     background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
     pointer-events: none;
-    transform: translate(-50%, -50%);
     z-index: 9999;
     opacity: 0.3;
     transition: opacity 0.3s ease;
+    will-change: transform;
 }
 
 /* 响应式设计 */
@@ -736,4 +783,226 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-color);
+}
+/* 增强科技感样式 */
+
+/* 联系项目增强效果 */
+.contact-item {
+    position: relative;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(180deg, var(--primary-color), transparent);
+    transition: height 0.3s ease;
+}
+
+.contact-item:hover::before {
+    height: 100%;
+}
+
+.contact-item h4 {
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+/* 标题增强效果 */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* 项目按钮增强效果 */
+.project-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.project-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.project-btn:hover {
+    box-shadow: 0 0 30px var(--glow-color), 0 0 60px var(--glow-secondary);
+}
+
+/* 卡片边框光效 */
+.card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+    border-radius: 20px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    filter: blur(10px);
+}
+
+.card:hover::after {
+    opacity: 0.5;
+}
+
+/* 项目卡片边框光效 */
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 15px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    filter: blur(8px);
+}
+
+.project-card:hover::after {
+    opacity: 0.6;
+}
+
+/* 导航链接增强 */
+.nav-link {
+    text-shadow: 0 0 0 transparent;
+    transition: all 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+}
+
+/* 表单输入框增强 */
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: rgba(160, 160, 160, 0.5);
+}
+
+.form-input:focus::placeholder,
+.form-textarea:focus::placeholder {
+    color: transparent;
+}
+
+/* 页脚增强 */
+.footer {
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* 社交链接增强 */
+.social-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.social-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 5px var(--primary-color);
+}
+
+.social-link:hover::after {
+    width: 80%;
+}
+
+/* 响应式优化 - 移动端禁用部分效果 */
+@media (max-width: 768px) {
+    .scan-line,
+    .matrix-bg,
+    .code-flow {
+        display: none;
+    }
+    
+    .grid-bg {
+        animation: none;
+        opacity: 0.5;
+    }
+}
+/* 联系链接样式 */
+.contact-link {
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+/* 滑入效果 */
+.fade-in {
+    animation: slideIn 1.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* 波浪效果 */
+.wave-text span {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.1s);
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
