@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHC - 科技未来</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 粒子背景画布 -->
+    <canvas id="particles"></canvas>
+    
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">SHC</span>
+                <span class="logo-pulse"></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">首页</a></li>
+                <li><a href="#about" class="nav-link">关于</a></li>
+                <li><a href="#projects" class="nav-link">项目</a></li>
+                <li><a href="#contact" class="nav-link">联系</a></li>
+            </ul>
+        </nav>
+
+        <!-- 主页区域 -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="glitch" data-text="欢迎来到未来">欢迎来到未来</h1>
+                <p class="hero-subtitle">
+                    <span class="typing-text"></span>
+                    <span class="cursor">|</span>
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">
+                        <span>探索更多</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                    <button class="btn btn-secondary">
+                        <span>了解详情</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 3D 旋转立方体 -->
+            <div class="cube-container">
+                <div class="cube">
+                    <div class="cube-face front"></div>
+                    <div class="cube-face back"></div>
+                    <div class="cube-face right"></div>
+                    <div class="cube-face left"></div>
+                    <div class="cube-face top"></div>
+                    <div class="cube-face bottom"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于区域 -->
+        <section id="about" class="section">
+            <h2 class="section-title">
+                <span class="title-line"></span>
+                关于我们
+                <span class="title-line"></span>
+            </h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3>创新技术</h3>
+                    <p>采用最前沿的技术栈，打造极致体验</p>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>极速性能</h3>
+                    <p>优化到极致，毫秒级响应速度</p>
+                    <div class="card-glow"></div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>精美设计</h3>
+                    <p>现代化UI设计，视觉冲击力十足</p>
+                    <div class="card-glow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目区域 -->
+        <section id="projects" class="section">
+            <h2 class="section-title">
+                <span class="title-line"></span>
+                精选项目
+                <span class="title-line"></span>
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <button class="project-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>项目 Alpha</h3>
+                        <p>下一代Web应用框架</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <button class="project-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>项目 Beta</h3>
+                        <p>智能数据分析平台</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">ML</span>
+                            <span class="tag">Cloud</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <button class="project-btn">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>项目 Gamma</h3>
+                        <p>区块链解决方案</p>
+                        <div class="project-tags">
+                            <span class="tag">Solidity</span>
+                            <span class="tag">Web3</span>
+                            <span class="tag">DeFi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系区域 -->
+        <section id="contact" class="section">
+            <h2 class="section-title">
+                <span class="title-line"></span>
+                联系我们
+                <span class="title-line"></span>
+            </h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4>邮箱</h4>
+                            <p>contact@shc.io</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🐙</div>
+                        <div>
+                            <h4>GitHub</h4>
+                            <p>github.com/shc</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <h4>网站</h4>
+                            <p>shc.github.io</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="您的名字" class="form-input">
+                    <input type="email" placeholder="您的邮箱" class="form-input">
+                    <textarea placeholder="留言内容" class="form-textarea"></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <span>发送消息</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2024 SHC. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">Twitter</a>
+                <a href="#" class="social-link">LinkedIn</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 鼠标跟随光效 -->
+    <div class="cursor-glow"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
