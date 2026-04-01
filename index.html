@@ -3,128 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SHC的个人主页 - 全栈开发工程师，追求极致性能与代码艺术">
-    <meta name="keywords" content="SHC,全栈开发,Web开发,性能优化,开源">
-    <meta name="theme-color" content="#00f3ff">
-    <title>SHC - 个人主页</title>
-    
-    <!-- 预加载关键资源 -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="script.js" as="script">
-    
-    <!-- DNS预解析 -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    
+    <meta name="description" content="SHC - 个人主页">
+    <meta name="theme-color" content="#000000">
+    <title>SHC</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 粒子背景画布 -->
-    <canvas id="particles"></canvas>
-    
-    <!-- 科技感扫描线 -->
-    <div class="scan-line"></div>
-    
-    <!-- 数字雨背景 -->
-    <div class="matrix-bg"></div>
-    
-    <!-- 网格背景 -->
-    <div class="grid-bg"></div>
-    
-    <!-- 主容器 -->
-    <div class="container">
-        <!-- 导航栏 -->
-        <nav class="navbar">
-            <div class="logo">
-                <span class="logo-text">SHC</span>
-                <span class="logo-pulse"></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link active">首页</a></li>
-                <li><a href="#contact" class="nav-link">联系</a></li>
-            </ul>
-        </nav>
+    <!-- 粒子Logo画布 -->
+    <canvas id="particle-logo"></canvas>
 
-        <!-- 主页区域 -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1 class="glitch" data-text="Hi, 我是 SHC">Hi, 我是 SHC</h1>
-                <p class="hero-subtitle typing-text"></p>
-                <div class="cta-buttons">
-                    <button class="btn btn-primary">
-                        <span>探索更多</span>
-                        <div class="btn-glow"></div>
-                    </button>
-                    <button class="btn btn-secondary">
-                        <span>了解详情</span>
-                        <div class="btn-glow"></div>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- 3D 旋转立方体 -->
-            <div class="cube-container">
-                <div class="cube">
-                    <div class="cube-face front"></div>
-                    <div class="cube-face back"></div>
-                    <div class="cube-face right"></div>
-                    <div class="cube-face left"></div>
-                    <div class="cube-face top"></div>
-                    <div class="cube-face bottom"></div>
-                </div>
-            </div>
-        </section>
+    <!-- 水波遮罩层 -->
+    <canvas id="ripple-mask"></canvas>
 
+    <!-- 提示文字 -->
+    <div class="hint">移动光标探索</div>
 
-
-        <!-- 联系区域 -->
-        <section id="contact" class="section">
-            <h2 class="section-title">
-                <span class="title-line"></span>
-                
-                <span class="title-line"></span>
-            </h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h4>邮箱</h4>
-                            <p><a href="mailto:aliyunbug@gmail.com" class="contact-link">aliyunbug@gmail.com</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🐙</div>
-                        <div>
-                            <h4>GitHub</h4>
-                            <p><a href="https://github.com/shc-github" target="_blank" rel="noopener noreferrer" class="contact-link">github.com/shc-github</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🌐</div>
-                        <div>
-                            <h4>网站</h4>
-                            <p><a href="https://shc-github.github.io" target="_blank" rel="noopener noreferrer" class="contact-link">shc-github.github.io</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 页脚 -->
-        <footer class="footer">
-            <p>&copy; 2024 SHC. 用心打造每一行代码</p>
-            <div class="social-links">
-                <a href="#" class="social-link">GitHub</a>
-                <a href="#" class="social-link">Twitter</a>
-                <a href="#" class="social-link">LinkedIn</a>
-            </div>
-        </footer>
+    <!-- 底部链接 -->
+    <div class="footer-info">
+        <div class="links">
+            <a href="https://github.com/shc-github" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="mailto:aliyunbug@gmail.com">Email</a>
+        </div>
     </div>
 
-    <!-- 鼠标跟随光效 -->
-    <div class="cursor-glow"></div>
-
-    <!-- 延迟加载脚本以提升性能 -->
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
