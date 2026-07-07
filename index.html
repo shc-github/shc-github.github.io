@@ -793,8 +793,17 @@ void main(){
         window.addEventListener('dblclick', () => resetView());
         window.addEventListener('keydown', e => {
             if (e.key === 'r' || e.key === 'R') resetView();
-            if (e.key === ' ') { e.preventDefault(); initDestruction(); }
         });
+
+        // ── Drag-to-trigger meteor ──
+        let dragStart = null;
+        window.addEventListener('mousedown', e => { dragStart = { x: e.clientX, y: e.clientY }; });
+        window.addEventListener('mousemove', e => {
+            if (!dragStart || state.destruction || state.flyTarget) return;
+            const dx = e.clientX - dragStart.x, dy = e.clientY - dragStart.y;
+            if (Math.sqrt(dx*dx+dy*dy) > 50) { dragStart = null; initDestruction(); }
+        }, { passive: true });
+        window.addEventListener('mouseup', () => { dragStart = null; });
 
         // ═══ LABEL UPDATE ═══
         function updateLabels() {
